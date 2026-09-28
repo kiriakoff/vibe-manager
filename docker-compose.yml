@@ -1,0 +1,30 @@
+services:
+  vibemanager:
+    build: .
+    container_name: vibemanager
+    restart: unless-stopped
+    ports:
+      - "8080:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /data/vibemanager:/data
+      - /data/filebrowser/files:/filebrowser:ro
+    networks:
+      - proxy
+    environment:
+      - FILEBROWSER_ROOT=/filebrowser
+      - FILEBROWSER_HOST=/data/filebrowser/files
+      - DATA_ROOT=/data
+      - STATIC_DIR=/app/static
+    # JWT_SECRET генерируется автоматически при первом запуске
+    # и сохраняется в /data/auth/jwt_secret
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vibemanager.rule=Host(`vibe.yourdomain.com`)"
+      - "traefik.http.routers.vibemanager.entrypoints=websecure"
+      - "traefik.http.routers.vibemanager.tls=true"
+      - "traefik.http.routers.vibemanager.tls.certresolver=letsEncrypt"
+
+networks:
+  proxy:
+    external: true

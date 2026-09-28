@@ -1,0 +1,28 @@
+# Rust
+backend/target/
+
+# Flutter (frontend/.gitignore covers most, these are safety nets)
+frontend/build/
+frontend/.dart_tool/
+frontend/.idea/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Data
+/data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Misc
+.DS_Store
+*.log

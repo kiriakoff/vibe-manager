@@ -1,0 +1,10 @@
+.git
+.github
+backend/target
+frontend/build
+frontend/.dart_tool
+frontend/.idea
+.env
+.env.*
+*.md
+docker-compose.yml
